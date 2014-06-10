@@ -1,0 +1,20 @@
+.row
+  .col-md-6.col-md-offset-3
+    %h2= t('.sign_up', :default => "Sign up")
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      %div
+        = f.label :email, t("email")
+        %br/
+        = f.email_field :email, :class=>"form-control"
+      %div
+        = f.label :password, t("password")
+        %br/
+        = f.password_field :password, :class=>"form-control"
+      %div
+        = f.label :password_confirmation, t("password_confirmation")
+        %br/
+        = f.password_field :password_confirmation, :class=>"form-control"
+      %br/
+      %div= f.submit t('.sign_up', :default => "Sign up"), :class=>"btn btn-primary form-control"
+    = render "devise/shared/links"
