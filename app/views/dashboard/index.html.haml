@@ -1,0 +1,32 @@
+.row
+  .col-md-8
+    -if @templates.count == 1
+      %h2= t 'template'
+    -else
+      %h2= t 'templates'
+    %table.table
+      %tr.info
+        %th= t 'name'
+        %th
+        %th= t 'fields'
+      =render :partial => "template", :collection => @templates
+      =render :partial => "form_template"
+  .col-md-4.well
+    %h2= t 'categories'
+    =render :partial => "category", :collection => @category.children
+
+-if current_user.admin
+  .row
+    .col-md-9
+      %h3= t 'all_fields'
+      %table.table
+        %tr.danger
+          %th= t 'name'
+          %th= t 'about'
+          %th= t 'used'
+        =render :partial => "field", :collection => @fields
+        =render :partial => "form_field"
+
+
+    .col-md-2.well
+      %h3= t 'Uploads'

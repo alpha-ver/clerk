@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  resources :templates
+  get  'page/index'
+  root 'page#index'
+  get  'dashboard'           => 'dashboard#index'
+  get  'dashboard/:id'       => 'dashboard#index'
 
+  resources  :templates
   devise_for :users
 
-  # root 'welcome#index'
-
-  #   get 'products/:id' => 'catalog#view'
-  resources :dashboard
-
-  
+  #get 'products/:id' => 'catalog#view'
 end

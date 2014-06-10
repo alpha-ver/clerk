@@ -1,4 +1,6 @@
 class Category < ActiveRecord::Base
-  belongs_to :parent
-  has_many   :childs, :as => :parent
+  has_many   :children,   class_name: "Category", foreign_key: "parent_id"
+  belongs_to :parent,     class_name: "Category"
+
+  scope :root, -> { find_by(:parent_id => -1) }
 end

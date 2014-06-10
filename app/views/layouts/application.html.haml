@@ -26,26 +26,15 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand(href="#") Clerk
+          %a.navbar-brand(href="/") Clerk
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li.active= link_to "Link 1", "#"
-            %li= link_to "Link 2", "#"
-            %li= link_to "Link 3", "#"
-            %li= link_to "Link 3", "#"
+            %li= link_to t('dashboard'), dashboard_path
 
-    .container
+    .container.main
       .row
-        .col-md-9
+        .col-md-12
           = bootstrap_flash
           = yield
-        .col-md-3
-          .well.sidebar-nav
-            %h3 Sidebar
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "#"
-              %li= link_to "Link 2", "#"
-              %li= link_to "Link 3", "#"
       %footer
         %p &copy; Company 2014

@@ -1,0 +1,7 @@
+%tr
+  %td
+    = template.name
+    -unless template.about.nil? 
+      %i.glyphicon.glyphicon-question-sign.tag-tooltip{:title => template.about}
+  %td
+  %td= template.template_fields.count
