@@ -57,7 +57,7 @@ Field.new(
 
 Field.new(
   name:  "ФИО директора",
-  code:  "{org_director}"
+  code:  "{org_director}",
   about: "Пример: Иванов Иван Иванович"
   ).save
 
@@ -73,4 +73,33 @@ Field.new(
   about: "Основной телефон фирмы"
   ).save
 
+Document.new(
+  name: "Типовой договор",
+  extension: "docx",
+  category_id: 4,
+  path: "9f48096e38b21f94d2903aa974e28028067488d6ef49b9b11fed01627d8550f7"
+  ).save
 
+TemplateField.new(
+  template_id: 1, 
+  field_id:    1,
+  val:    "Рога и копыта"
+  ).save
+
+TemplateField.new(
+  template_id: 1, 
+  field_id:    2,
+  val:    "Абдимумин Пирбабаев Уморжанович"
+  ).save
+
+TemplateField.new(
+  template_id: 1, 
+  field_id:    3,
+  val:         "г.Москва, ул. Московская, дом 86"
+  ).save
+
+TemplateField.new(
+  template_id: 1, 
+  field_id:    4,
+  val:    "8(800)520-08-90"
+  ).save

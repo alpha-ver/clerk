@@ -1,0 +1,13 @@
+.row
+  .col-md-8
+    -if @documents.count == 0
+      %h2= t 'no_document'
+    -elsif
+      %h2= t 'document'
+    -else 
+      %h2= t 'documents'
+    %ul
+      =render :partial => "document", :collection => @documents
+  .col-md-4.well
+    %h2= t 'categories'
+    =render :partial => "category", :collection => @category.children

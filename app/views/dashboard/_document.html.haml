@@ -1,0 +1,5 @@
+%li
+  =document.name
+  %ul
+    -@templates.each do |t|
+      %li= link_to t.name,  dashboard_path + "/generate/#{document.id}/#{t.id}"
