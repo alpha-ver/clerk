@@ -1,9 +1,9 @@
 //ddd
 %tr
-=form_for "ddd" do |f|
+=form_for :template_field do |f|
   %td
     =f.text_field :name,  :class => "form-control", :placeholder => t('name', :default => 'Name')
-    =f.text_area  :about, :class => "form-control", :placeholder => t('about', :default => 'About')
+    =f.text_area  :about, :class => "form-control area", :placeholder => t('about', :default => 'About')
   %td 
     =f.text_field :code, :class => "form-control", :placeholder => t('code', :default => 'Code')
   %td
