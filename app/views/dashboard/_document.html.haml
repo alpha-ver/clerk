@@ -1,5 +1,12 @@
 %li
   =document.name
+
+  =link_to document_path(document.id), :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
+    %i.glyphicon.glyphicon-trash    
+
   %ul
     -@templates.each do |t|
       %li= link_to t.name,  dashboard_path + "/generate/#{document.id}/#{t.id}"
+
+  %iframe{frameborder: "0", src: "http://docs.google.com/gview?url=http://#{request.host}/preview/#{document.path}.pdf&embedded=true", style: "width:600px; height:500px;"}
+

@@ -1,8 +1,8 @@
 %tr
-=form_for :template, :url => "/dashboard/template" do |f|
+=form_for :template, :url => templates_path do |f|
   %td
-    =f.text_field :name,  :class => "form-control", :placeholder => t('name', :default => 'Name')
+    =f.text_field :name,  :class => "form-control",      :placeholder => t('activerecord.attributes.template.name')
   %td
-    =f.text_area  :about, :class => "form-control area", :placeholder => t('about', :default => 'About')
-  %td
-    =f.submit t('add', :default => "Add"), :class => "form-control btn btn-primary"            
+    =f.text_area  :about, :class => "form-control area", :placeholder => t('activerecord.attributes.template.about')
+  %td{:colspan => 3}
+    =f.submit t('add', :default => "Add"), :class => "form-control btn btn-primary"

@@ -9,13 +9,16 @@
         %th= t 'name'
         %th
         %th= t 'fields'
+        %th
+        %th
       =render :partial => "template", :collection => @templates
       =render :partial => "form_template"
   .col-md-4.well
     %h2= t 'categories'
-    =render :partial => "category", :collection => @category.children
+    %ul.nav.nav-list
+      =render :partial => "category", :collection => @category.children
 
--if current_user.admin
+-if admin?
   .row
     .col-md-9
       %h3= t 'all_fields'
@@ -28,5 +31,16 @@
         =render :partial => "form_field"
 
 
-    .col-md-2.well
-      %h3= t 'Uploads'
+    .col-md-3.well
+      %h3#file= t 'Uploads'
+      %p#file_status
+        &nbsp;
+      = form_for :documents, :url => documents_path do |f|
+        .form-group
+          = f.text_field :name, :class => 'form-control change'
+        .form-group
+          = f.select(:category, @categories, {},{:class => 'form-control change'})
+      #fileupload.upload
+        %p=t 'drag_drop'
+      .progress#progress
+

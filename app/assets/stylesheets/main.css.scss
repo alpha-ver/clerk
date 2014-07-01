@@ -3,6 +3,31 @@
 }
 
 .area{
-  resize: none;
+  resize: none;  
+}
+
+.logo{
+  font-size: 33px;
+}
+
+.upload{
+  border: dashed 2px #ccc;
+  padding: 0;
+  margin: 0;
   
+  p{
+    font-size: 20px;
+    color: #ccc;
+    text-align: center;
+  }
+}
+
+.nav{
+   .nav {
+    padding-left: 10px;
+  }
+}
+
+.admin{
+  background-color: #F2DEDE;
 }

@@ -3,13 +3,19 @@ Rails.application.routes.draw do
   root 'page#index'
   get  'dashboard'                                    => 'dashboard#index'
   get  'dashboard/category/:category_id'              => 'dashboard#document'
-  get  'dashboard/generate/:template_id/:document_id' => 'dashboard#generate'
+  get  'dashboard/generate/:document_id/:template_id' => 'dashboard#generate'
 
+  resources  :templates, :except => [:index, :new, :show]
+  resources  :fields,    :except => [:index, :new, :show]
+  resources  :documents,  :except => []
 
-  post 'dashboard/template' => 'dashboard#template'
-
-  resources  :templates
   devise_for :users
 
+
+
+  ####
+  ####
+  ####
+  post "test" => 'dashboard#test'
   #get 'products/:id' => 'catalog#view'
 end

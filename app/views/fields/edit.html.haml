@@ -1,0 +1,25 @@
+%h1
+  =@field.name
+  %small
+    =@field.about
+
+= form_for @field do |f|
+  - if @field.errors.any?
+    #error_explanation
+      %ul
+        - @field.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name, t('activerecord.attributes.field.name')
+    = f.text_field :name, :class=> "form-control"
+  .form-group
+    = f.label :code, t('activerecord.attributes.field.code')
+    = f.text_field :code, :class=> "form-control area"
+  .form-group
+    = f.label :about, t('activerecord.attributes.field.about')
+    = f.text_area :about, :class=> "form-control"
+
+
+  .actions
+    = f.submit 'Save'

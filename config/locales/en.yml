@@ -21,3 +21,20 @@
 
 en:
   hello: "Hello world"
+
+ru:
+  activerecord:
+    attributes:
+      template:
+        name:  "Имя шаблона"
+        about: "Описание шаблона"
+
+      field: 
+        name:  "Название поля"
+        code:  "Код поиска"
+        about: "Подсказка"
+
+
+  template_destroyed: "Шаблон удален"
+  chose_category:     "Выберите категорию"
+

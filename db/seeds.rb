@@ -52,24 +52,24 @@ Template.new(
 
 Field.new(
   name: "Название организации",
-  code: "{org_name}"
+  code: "org_name"
   ).save
 
 Field.new(
   name:  "ФИО директора",
-  code:  "{org_director}",
+  code:  "org_director",
   about: "Пример: Иванов Иван Иванович"
   ).save
 
 Field.new(
   name: "Юридический адресc",
-  code: "{org_address}",
+  code: "org_address",
   about: "Полный адресс огранизации. Пример: г.Москва, ул. Московская, дом 86"
   ).save
 
 Field.new(
   name: "Телефон",
-  code: "{org_phone}",
+  code: "org_phone",
   about: "Основной телефон фирмы"
   ).save
 

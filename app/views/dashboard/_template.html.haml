@@ -1,7 +1,13 @@
 %tr
   %td
-    = template.name
-    -unless template.about.nil? 
+    =link_to edit_template_path(template.id) do
+      =template.name
+    -unless template.about.nil? || template.about.empty?
       %i.glyphicon.glyphicon-question-sign.tag-tooltip{:title => template.about}
   %td
-  %td= template.template_fields.count
+  %td=template.template_fields.count
+  %td
+  %td
+    -if template.id != 1
+      =link_to template_path(template.id), :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
+        %i.glyphicon.glyphicon-trash

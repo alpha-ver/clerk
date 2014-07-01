@@ -1,10 +1,10 @@
 //ddd
 %tr
-=form_for :template_field do |f|
+=form_for :field, :url => fields_path  do |f|
   %td
-    =f.text_field :name,  :class => "form-control", :placeholder => t('name', :default => 'Name')
-    =f.text_area  :about, :class => "form-control area", :placeholder => t('about', :default => 'About')
-  %td 
-    =f.text_field :code, :class => "form-control", :placeholder => t('code', :default => 'Code')
+    =f.text_field :name,  :class => "form-control",      :placeholder => t('activerecord.attributes.field.name',  :default => 'Name')
+    =f.text_field :code,  :class => "form-control",      :placeholder => t('activerecord.attributes.field.code',  :default => 'Code')
   %td
-    =f.submit "Save", :class => "form-control btn btn-primary"
+    =f.text_area  :about, :class => "form-control area", :placeholder => t('activerecord.attributes.field.about', :default => 'About')
+  %td
+    =f.submit t('save', :default => "Save"), :class => "form-control btn btn-primary"

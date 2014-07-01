@@ -1,7 +1,27 @@
-%h1 Editing template
+%h1=t('editing_template')
 
-= render 'form'
+= form_for @template do |f|
+  - if @template.errors.any?
+    #error_explanation
+      %ul
+        - @template.errors.full_messages.each do |msg|
+          %li= msg
 
-= link_to 'Show', @template
-\|
-= link_to 'Back', templates_path
+  .form-group
+    = f.label :name, t('activerecord.attributes.template.name')
+    = f.text_field :name, :class=> "form-control",      :placeholder => t('activerecord.attributes.template.name')
+  .form-group
+    = f.label :about, t('activerecord.attributes.template.about')
+    = f.text_area :about, :class=> "form-control area", :placeholder => t('activerecord.attributes.template.about')
+
+  %hr
+  %h2=t('fields')
+
+  -@template_fields.each do |tf|
+    =fields_for :template_fields do |fi|
+      .form-group
+        = fi.label tf.field.code, tf.field.name
+        = fi.text_field tf.field.code, :class=> "form-control", :value => tf.val
+
+  .actions
+    = f.submit t('save', :default => 'Save'), :class => "btn btn-primary form-control"
