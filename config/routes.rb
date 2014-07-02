@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources  :templates, :except => [:index, :new, :show]
   resources  :fields,    :except => [:index, :new, :show]
   resources  :documents,  :except => []
+  
+  scope '/admin' do 
+    resources  :users, :except => [:new, :create]
+  end
 
   devise_for :users
 

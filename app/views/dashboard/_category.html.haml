@@ -1,27 +1,26 @@
-//dashboard_path + "/category/#{category.id}"
+-if perm?(category, 5) || admin?
+  %li
+    =link_to "#", :class => 'dropdown-toggle', :data=> {:toggle=>'dropdown'} do
+      =category.name
+      -if category.documents.count != 0  
+        %span.caret
+    -if category.documents.count != 0 || admin?
+      %ul.dropdown-menu{role: "menu"}
+        -if admin?
+          %li
+            =link_to "#", :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
+              %i.glyphicon.glyphicon-trash
+              =t 'destroy'
+            =link_to "#" do
+              %i.glyphicon.glyphicon-pencil
+              =t 'edit'      
+          %li.divider
 
-%li
-  =link_to "#", :class => 'dropdown-toggle', :data=> {:toggle=>'dropdown'} do
-    =category.name
-    -if category.documents.count != 0  
-      %span.caret
-  -if category.documents.count != 0 || admin?
-    %ul.dropdown-menu{role: "menu"}
-      -if admin?
-        %li
-          =link_to "#", :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
-            %i.glyphicon.glyphicon-trash
-            =t 'destroy'
-          =link_to "#" do
-            %i.glyphicon.glyphicon-pencil
-            =t 'edit'      
-        %li.divider
+        -category.documents.each do |doc|
+          %li
+            =link_to document_path(doc.id) do
+              =doc.name
 
-      -category.documents.each do |doc|
-        %li
-          =link_to document_path(doc.id) do
-            =doc.name
-
--unless category.children.empty?
-  %ul.nav.nav-list.tree
-    =render :partial => "dashboard/category", :collection => category.children
+  -unless category.children.empty?
+    %ul.nav.nav-list.tree
+      =render :partial => "dashboard/category", :collection => category.children

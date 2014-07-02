@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610120336) do
+ActiveRecord::Schema.define(version: 20140702080102) do
 
   create_table "categories", force: true do |t|
     t.string   "name",       null: false
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 20140610120336) do
   end
 
   add_index "fields", ["code"], name: "index_fields_on_code", unique: true
+
+  create_table "permissions", force: true do |t|
+    t.string   "about"
+    t.integer  "category_id", null: false
+    t.integer  "user_id",     null: false
+    t.integer  "status",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "permissions", ["category_id", "user_id"], name: "index_permissions_on_category_id_and_user_id", unique: true
 
   create_table "template_fields", force: true do |t|
     t.string   "val"

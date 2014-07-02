@@ -1,0 +1,32 @@
+%h1 Editing user
+
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :email
+    = f.text_field :email, class: 'form-control'
+  .form-group
+    = f.label :sign_in_count
+    = f.text_field :sign_in_count, class: 'form-control'
+
+  %hr
+  %h3=t 'permission'
+  - if @user.admin? 
+    %p=t 'admin_full_permission'
+  -else
+    - Category.root.children.each do |c|
+      .form-group
+        =f.label :perm, c.name
+        =fields_for :permission do |cp|
+          =cp.check_box c.id, {:checked => perm?(c,5,@user.id)}, 5
+    = f.submit 'Save', class: "btn btn-primary form-control"
+
+= link_to 'Show', @user
+\|
+= link_to 'Back', users_path

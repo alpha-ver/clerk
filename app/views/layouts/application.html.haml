@@ -93,6 +93,8 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
             %li= link_to t('dashboard'), dashboard_path
+            -if admin?
+              %li= link_to t('edit_user'), users_path 
 
     .container.main
       .row
