@@ -1,6 +1,7 @@
 .row
   .col-md-6.col-md-offset-3
-    %h2= t('.sign_up', :default => "Sign up")
+    = render "devise/shared/links"
+    %h2= t('sign_up', :default => "Sign up")
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
       %div
@@ -16,5 +17,5 @@
         %br/
         = f.password_field :password_confirmation, :class=>"form-control"
       %br/
-      %div= f.submit t('.sign_up', :default => "Sign up"), :class=>"btn btn-primary form-control"
-    = render "devise/shared/links"
+      %div= f.submit t('sign_up', :default => "Sign up"), :class=>"btn btn-primary form-control"
+    

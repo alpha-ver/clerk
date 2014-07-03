@@ -118,6 +118,13 @@ class DocumentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
+      category = cat_main(@document.category)
+      perm = Permission.find_by(:user_id => current_user.id, :category_id => category)
+      if !current_user.admin?
+        if perm.nil? || perm.status != 5
+          redirect_to dashboard_path, notice: t('not_permssion')
+        end
+      end
     end
 
     def user
@@ -134,4 +141,13 @@ class DocumentsController < ApplicationController
     def document_params
       params.require(:document).permit(:name, :category_id)
     end
+
+    def cat_main(category)
+      if category.parent.name == 'root'
+        category.id
+      else
+        cat_main(category.parent)
+      end
+    end
+
 end

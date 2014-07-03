@@ -8,10 +8,10 @@
       %ul.dropdown-menu{role: "menu"}
         -if admin?
           %li
-            =link_to "#", :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
+            =link_to category_path(category.id), :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
               %i.glyphicon.glyphicon-trash
               =t 'destroy'
-            =link_to "#" do
+            =link_to edit_category_path(category.id) do
               %i.glyphicon.glyphicon-pencil
               =t 'edit'      
           %li.divider

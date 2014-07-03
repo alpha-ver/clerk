@@ -24,7 +24,7 @@ class FieldsController < ApplicationController
           tf.save
         end
 
-        format.html { redirect_to dashboard_path, notice: t('field_created') }
+        format.html { redirect_to dashboard_path, notice: t('field_added') }
       else
         format.html { redirect_to dashboard_path, notice: @field.errors.full_messages[0] }
       end

@@ -1,4 +1,4 @@
-%h1 Editing user
+%h1=t 'editing_user'
 
 = form_for @user do |f|
   - if @user.errors.any?
@@ -26,7 +26,3 @@
         =fields_for :permission do |cp|
           =cp.check_box c.id, {:checked => perm?(c,5,@user.id)}, 5
     = f.submit 'Save', class: "btn btn-primary form-control"
-
-= link_to 'Show', @user
-\|
-= link_to 'Back', users_path

@@ -1,5 +1,5 @@
 .row
-  .col-md-8
+  .col-md-12
     -if @templates.count == 1
       %h2= t 'template'
     -else
@@ -13,32 +13,42 @@
         %th
       =render :partial => "template", :collection => @templates
       =render :partial => "form_template"
-  .col-md-4.well
-    %h2= t 'categories'
-    %ul.nav.nav-list
-      =render :partial => "category", :collection => @category.children
+
 
 -if admin?
+  %hr
   .row
-    .col-md-9
+    .col-md-4
+      .well
+
+        %h3=t 'add_category'
+        =render :partial => 'add_category'
+
+      .well
+        %h3#file= t 'uploads'
+        %p#file_status
+          &nbsp;
+        = form_for :documents, :url => documents_path do |f|
+          .form-group
+            = f.text_field :name, :class => 'form-control change', :placeholder => t('name')
+          .form-group
+            = f.select(:category, @categories, {},{:class => 'form-control change'})
+        #fileupload.upload
+          %p=t 'drag_drop'
+        .progress#progress
+
+
+    .col-md-8
       %h3= t 'all_fields'
       %table.table
         %tr.danger
           %th= t 'name'
-          %th= t 'about'
-          %th= t 'used'
+          %th= t 'code'
+          %th
         =render :partial => "field", :collection => @fields
         =render :partial => "form_field"
+    
 
-    .col-md-3.well
-      %h3#file= t 'Uploads'
-      %p#file_status
-        &nbsp;
-      = form_for :documents, :url => documents_path do |f|
-        .form-group
-          = f.text_field :name, :class => 'form-control change'
-        .form-group
-          = f.select(:category, @categories, {},{:class => 'form-control change'})
-      #fileupload.upload
-        %p=t 'drag_drop'
-      .progress#progress
+
+
+

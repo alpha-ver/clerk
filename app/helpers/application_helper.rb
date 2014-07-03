@@ -1,10 +1,13 @@
 module ApplicationHelper
   def admin?
-    current_user.admin
+    if current_user.nil?
+      false
+    else
+      current_user.admin
+    end
   end
 
   def perm?(category,status, uid=current_user.id)
-
     if category.id == cat_main(category)
       perm = category.permissions.find_by(:user_id => uid) 
       if perm.nil?

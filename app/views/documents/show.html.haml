@@ -1,7 +1,7 @@
 %p#notice= notice
 
 .row
-  .col-md-8
+  .col-md-12
     %h1
       =@document.name
       %small
@@ -20,11 +20,11 @@
             =t.name 
             %i.glyphicon.glyphicon-download
 
-    %hr
-    %iframe{frameborder: "0", src: "http://docs.google.com/gview?url=http://#{request.host}/preview/#{@document.path}.pdf&embedded=true", style: "width:100%; height:500px;"}
-
-
+.row
   .col-md-4.well
     %h2= t 'categories'
     %ul.nav.nav-list
       =render :partial => "dashboard/category", :collection => @category.children
+  .col-md-8 
+    %iframe{frameborder: "0", src: "http://docs.google.com/gview?url=http://#{request.host}/preview/#{@document.path}.pdf&embedded=true", style: "width:100%; height:500px;"}
+

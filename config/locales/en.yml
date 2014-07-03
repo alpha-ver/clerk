@@ -34,7 +34,62 @@ ru:
         code:  "Код поиска"
         about: "Подсказка"
 
+      user:
+        password: "Пароль"
+        email:    "Почта"
 
   template_destroyed: "Шаблон удален"
+  template_added:     "Шаблон добавлен"
+  template_updated:   "Шаблон обновлен"
+
+  field_added:        "Поле добавленно"
+  field_destroyed:    "Поле удаленно"
+  field_updated:      "Поле обновленно"
+
+  user_updated:       "Пользователь обновлен"
+  user_destroyed:     "Пользователь и все его данные были удаленны"
+
+
   chose_category:     "Выберите категорию"
+  categories:        "Категории"
+  add_category:      "Добавить категорию"
+  uploads:           "Загрузить"
+  all_fields:        "Поля для поиска"
+  templates:         "Шаблоны"
+  name:              "Имя"
+  fields:            "Полей"
+  add:               "Добавить"
+  save:              "Сохранить"
+  code:              "Код поиска"
+  edit:              "Редактировать"
+  destroy:           "Уничтожить"
+  show:              "Показать"
+  drag_drop:         "Перетащите сюда"
+  main:              "Главная"
+  parent:            "Родитель"
+  dashboard:         "Приборная панель"
+  edit_user:         "Управление пользователями"
+  listing_users:     "Список пользователей" 
+  id:                "ИД" 
+  email:             "Почта"
+  last_sign_at:      "Последний вход"
+  last_sign_ip:      "Последний ip"
+  created_date:      "Создан"
+  back:              "Назад"
+  logout:            "Выход"
+
+
+  password:              "Пароль"
+  sign_in:               "Войти"
+  sign_up:               "Регистрация"
+  remember:              "Напомнить пароль"
+  password_confirmation: "Потверждение пароля"
+  current_password:      "Текущий пароль"
+  permission:            "Права доступа"
+  admin_full_permission: "Администратор всегда имеет полный доступ"
+  remember_me:           "Запомнить меня"
+
+
+
+
 

@@ -1,0 +1,7 @@
+=form_for Category.new do |f|
+  .form-group
+    = f.text_field :name, :class=> 'form-control', :placeholder => t('name')
+  .form-group
+    = f.select(:parent_id, Category.all.map{|i| (i.name != 'root' ? [i.name, i.id] : [t("main"), 1])} , {},{:class => 'form-control'})
+  .actions
+    = f.submit t('save', :default=> "Save"), :class=> 'btn btn-primary form-control'

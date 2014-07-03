@@ -1,2 +1,14 @@
-%h1 Главная страница
-%p 
+
+.row
+  -if !current_user.nil?
+    -i=8
+    .col-md-4.well
+      %h2= t 'categories'
+      %ul.nav.nav-list
+        =render :partial => "dashboard/category", :collection => @category.children
+  -else
+    -i=12
+
+  %div{:class=> "col-md-#{i}"}
+    %h1 Главная страница
+    %p hello world
