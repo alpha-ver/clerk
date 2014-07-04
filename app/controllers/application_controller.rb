@@ -4,8 +4,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
+  def redirect_to_dash
+    redirect_to dashboard_path
+  end
+
   private
+
+    def cat_main(category)
+      if category.parent.name == 'root'
+        category.id
+      else
+        cat_main(category.parent)
+      end
+    end
+
     def admin
-      redirect_to "/" if !current_user.admin
+      redirect_to "/" if current_user.nil? || !current_user.admin
     end
 end

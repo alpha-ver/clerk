@@ -1,8 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require bootstrap/tooltip
-#= require bootstrap/dropdown
-#= require bootstrap/alert
+#= require bootstrap
 
 #= require jquery-fileupload/vendor/jquery.ui.widget
 

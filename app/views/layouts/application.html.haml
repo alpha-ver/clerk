@@ -96,13 +96,13 @@
             -if admin?
               %li= link_to t('edit_user'), users_path
 
-          %ul.nav.navbar-nav.pull-right
+          %ul.nav.navbar-nav.navbar-right
             -if !user_signed_in?
               %li.dropdown
                 %a.dropdown-toggle{:href=>"#", "data-toggle"=>"dropdown"}
                   =t("sign_in")
                   %b.caret
-                .dropdown-menu{:style => "padding-left: 25px; padding-right: 25px; width:250px"}
+                .dropdown-menu.menu-form
                   = form_for("user", :as => "user_name", :url => user_session_path, :html => {:class=>"form-horizontal"}) do |f|
                     .form-group
                       = f.email_field :email, :placeholder => t("email"), :class=>"form-control"
@@ -110,6 +110,7 @@
                       = f.password_field :password, :placeholder => t("password"), :class=>"form-control"
                     .form-group
                       = f.submit t("sign_in"), :class=> 'btn btn-primary btn-nav form-control'
+                    %p
                       = link_to t("sign_up"), new_user_registration_path, :class => "a-login"
                       \|
                       = link_to t("remember"), new_user_password_path, :class => "a-login"

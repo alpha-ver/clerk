@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
+  before_filter :admin
+  
   # GET /categories
   # GET /categories.json
   def index
@@ -28,7 +30,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to dashboard_path, notice: t('category_created') }
+        format.html { redirect_to dashboard_path, notice: t('category_added') }
       else
         format.html { render :new }
       end

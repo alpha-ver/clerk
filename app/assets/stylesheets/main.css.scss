@@ -31,3 +31,21 @@
 .admin{
   background-color: #F2DEDE;
 }
+
+.menu-form {
+  padding-left:  25px; 
+  padding-right: 25px; 
+  width:         272px;
+
+  p{
+    text-align: center;
+    padding:    0px;
+    margin:     0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .menu-form {
+    width:100%
+  }
+}

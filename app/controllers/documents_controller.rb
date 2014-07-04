@@ -110,19 +110,27 @@ class DocumentsController < ApplicationController
     @document.destroy
 
     respond_to do |format|
-      format.html { redirect_to dashboard_path, notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to dashboard_path, notice: t('document_destroyed') }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
-      @document = Document.find(params[:id])
-      category = cat_main(@document.category)
-      perm = Permission.find_by(:user_id => current_user.id, :category_id => category)
-      if !current_user.admin?
-        if perm.nil? || perm.status != 5
-          redirect_to dashboard_path, notice: t('not_permssion')
+      if current_user.nil?
+        redirect_to new_user_session_path
+      else
+        @document = Document.find_by(:id => params[:id])
+        if @document.nil?
+          redirect_to dashboard_path
+        else
+          category = cat_main(@document.category)
+          perm = Permission.find_by(:user_id => current_user.id, :category_id => category)
+          if !current_user.admin?
+            if perm.nil? || perm.status != 5
+              redirect_to dashboard_path, notice: t('not_permssion')
+            end
+          end
         end
       end
     end
@@ -140,14 +148,6 @@ class DocumentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
       params.require(:document).permit(:name, :category_id)
-    end
-
-    def cat_main(category)
-      if category.parent.name == 'root'
-        category.id
-      else
-        cat_main(category.parent)
-      end
     end
 
 end
