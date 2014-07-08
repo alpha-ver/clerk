@@ -24,9 +24,9 @@ class FieldsController < ApplicationController
           tf.save
         end
 
-        format.html { redirect_to dashboard_path, notice: t('field_added') }
+        format.html { redirect_to admin_path, notice: t('field_added') }
       else
-        format.html { redirect_to dashboard_path, notice: @field.errors.full_messages[0] }
+        format.html { redirect_to admin_path, notice: @field.errors.full_messages[0] }
       end
     end
   end
@@ -35,7 +35,7 @@ class FieldsController < ApplicationController
   def update
     respond_to do |format|
       if @field.update(field_params)
-        format.html { redirect_to dashboard_path, notice: t('field_updated') }
+        format.html { redirect_to admin_path, notice: t('field_updated') }
       else
         format.html { render :edit }
       end
@@ -47,7 +47,7 @@ class FieldsController < ApplicationController
   def destroy
     @field.destroy
     respond_to do |format|
-      format.html { redirect_to dashboard_path, notice: t('field_destroyed') }
+      format.html { redirect_to admin_path, notice: t('field_destroyed') }
     end
   end
 

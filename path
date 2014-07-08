@@ -1,1 +1,9 @@
-aqwerds
+        -if admin?        
+          %li.divider
+          %li
+            =link_to category_path(category.id), :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
+              %i.glyphicon.glyphicon-trash
+              =t 'destroy'
+            =link_to edit_category_path(category.id) do
+              %i.glyphicon.glyphicon-pencil
+              =t 'edit'      

@@ -43,11 +43,11 @@ class DocumentsController < ApplicationController
       @document.path      = hash
       @document.save
 
-      current_template = Template.find(1)
+      #current_template = Template.find(1)
       current_document = @document
       
       path   = "word/document.xml"
-      fields = current_template.template_fields.map {|i| [i.field.code, i.val]} 
+      fields = Field.all.map {|i| [i.code, i.about]} 
 
       zf = Zip::File.new("public/templates/#{current_document.path}.#{current_document.extension}")
       buffer = Zip::OutputStream.write_buffer do |out|
@@ -59,9 +59,9 @@ class DocumentsController < ApplicationController
               out.put_next_entry(e.name)
               xml = e.get_input_stream.read.force_encoding("UTF-8")
               fields.concat(dynamic_fields).each do |field|
-                xml.gsub!("{#{field[0]}}","#{field[1]}")
+                #xml.gsub!("{#{field[0]}}","#{field[1]}")
+                xml.gsub!("{#{field[0]}}", "➤#{field[1]}")
               end
-
               out.write xml
             else
               out.put_next_entry(e.name)
@@ -88,11 +88,9 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        format.json { render :show, status: :ok, location: @document }
+        format.html { redirect_to admin_path, notice: t('document_updated') }
       else
         format.html { render :edit }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -110,7 +108,7 @@ class DocumentsController < ApplicationController
     @document.destroy
 
     respond_to do |format|
-      format.html { redirect_to dashboard_path, notice: t('document_destroyed') }
+      format.html { redirect_to admin_path, notice: t('document_destroyed') }
     end
   end
 

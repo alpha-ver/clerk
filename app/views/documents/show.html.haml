@@ -8,11 +8,6 @@
         \/
         =@document.category.name
 
-    -if admin?
-      .alert.alert-danger{role: "alert"}
-        =link_to document_path(@document.id), :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
-          %i.glyphicon.glyphicon-trash 
-
     %ul.nav.nav-pills
       -@templates.each do |t|
         %li
@@ -26,5 +21,5 @@
     %ul.nav.nav-list
       =render :partial => "dashboard/category", :collection => @category.children
   .col-md-8 
-    %iframe{frameborder: "0", src: "http://docs.google.com/gview?url=http://#{request.host}/preview/#{@document.path}.pdf&embedded=true", style: "width:100%; height:500px;"}
+    %iframe#google-iframe{frameborder: "0", src: "http://docs.google.com/gview?url=http://#{request.host}/preview/#{@document.path}.pdf&embedded=true"}
 

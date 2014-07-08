@@ -1,11 +1,10 @@
+require 'zip'
+require 'libreconv'
+
 class DashboardController < ApplicationController
   before_filter :authenticate_user!
   before_action :user
-
-  #before_filter :admin
-
-  require 'zip'
-  require 'libreconv'
+  before_filter :admin, :only => [:admin]
   
   def index
     @fields    = Field.all
@@ -57,10 +56,11 @@ class DashboardController < ApplicationController
     else
       redirect_to dashboard_path, notice: t('not_permssion')
     end
-
-
   end
 
+  def admin
+    @fields = Field.all
+  end 
 
   private
     def user

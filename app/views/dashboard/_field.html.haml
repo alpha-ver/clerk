@@ -4,7 +4,7 @@
       = field.name
     -unless field.about.nil? || field.about.empty? 
       %i.glyphicon.glyphicon-question-sign.tag-tooltip{:title => field.about}      
-  %td= field.code
+  %td=field.code.gsub(" ", "▉")
   %td
     =link_to field_path(field.id), :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
       %i.glyphicon.glyphicon-trash

@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @documents = @category.documents
   end
 
   # GET /categories/new
@@ -30,7 +31,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to dashboard_path, notice: t('category_added') }
+        format.html { redirect_to admin_path, notice: t('category_added') }
       else
         format.html { render :new }
       end
@@ -42,7 +43,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to dashboard_path, notice: t('category_updated') }
+        format.html { redirect_to admin_path, notice: t('category_updated') }
       else
         format.html { render :edit }
       end
@@ -54,7 +55,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to dashboard_path, notice: t('category_destroyed') }
+      format.html { redirect_to admin_path, notice: t('category_destroyed') }
       format.json { head :no_content }
     end
   end
@@ -63,6 +64,7 @@ class CategoriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
+      @root_cat = Category.root 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,26 +1,12 @@
 -if perm?(category, 5) || admin?
-  %li
-    =link_to "#", :class => 'dropdown-toggle', :data=> {:toggle=>'dropdown'} do
-      =category.name
-      -if category.documents.count != 0  
-        %span.caret
-    -if category.documents.count != 0 || admin?
-      %ul.dropdown-menu{role: "menu"}
-        -category.documents.each do |doc|
-          %li
-            =link_to document_path(doc.id) do
-              =doc.name
-        -if admin?        
-          %li.divider
-          %li
-            =link_to category_path(category.id), :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
-              %i.glyphicon.glyphicon-trash
-              =t 'destroy'
-            =link_to edit_category_path(category.id) do
-              %i.glyphicon.glyphicon-pencil
-              =t 'edit'      
-          
-
+  -if category.documents.count != 0
+    %li 
+      =link_to category_path(category.id) do
+        =category.name
+  -else
+    %li.disabled
+      =link_to "#", :disable => "" do
+        =category.name 
 
   -unless category.children.empty?
     %ul.nav.nav-list.tree

@@ -57,9 +57,7 @@ class TemplatesController < ApplicationController
   # DELETE /templates/1
   # DELETE /templates/1.json
   def destroy
-    if @template.id != 1
-      @template.destroy
-    end
+    @template.destroy
 
     respond_to do |format|
       format.html { redirect_to dashboard_path, notice: t('template_destroyed') }

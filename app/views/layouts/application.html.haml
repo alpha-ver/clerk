@@ -94,6 +94,7 @@
           %ul.nav.navbar-nav
             %li= link_to t('dashboard'), dashboard_path
             -if admin?
+              %li= link_to t('admin'),     admin_path
               %li= link_to t('edit_user'), users_path
 
           %ul.nav.navbar-nav.navbar-right
@@ -124,11 +125,8 @@
                   %li.divider
                   %li= link_to t("logout"), destroy_user_session_path, :method => :delete
 
-
     .container.main
       .row
         .col-md-12
           = bootstrap_flash
           = yield
-      %footer
-        %p &copy; Company 2014

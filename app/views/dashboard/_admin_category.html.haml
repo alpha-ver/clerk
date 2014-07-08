@@ -1,0 +1,29 @@
+-if perm?(admin_category, 5) || admin?
+  %li
+    =link_to "#category#{admin_category.id}", :class => 'dropdown-toggle category', :data=> {:toggle=>'dropdown', :toggle=>"collapse", :parent=> "#accordion" } do
+      =admin_category.name
+      -if admin_category.documents.count != 0  
+        %span.caret
+
+    =link_to edit_category_path(admin_category.id), :class => 'category-link' do
+      %i.glyphicon.glyphicon-pencil
+
+    =link_to category_path(admin_category.id), :class => 'category-link', :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
+      %i.glyphicon.glyphicon-trash
+
+    -if admin_category.documents.count != 0
+      %ul.panel-collapse.collapse.nav{:id => "category#{admin_category.id}"}
+        -admin_category.documents.each do |doc|
+          %li
+            =link_to document_path(doc.id), :class => "category" do
+              =doc.name
+
+            =link_to edit_document_path(doc.id), :class => 'category-link' do
+              %i.glyphicon.glyphicon-pencil
+            =link_to document_path(doc.id), :class => "category-link", :data => {:confirm => t('are_you_sure', :default => 'Are you sure?')}, :method => :delete do
+              %i.glyphicon.glyphicon-trash 
+
+
+  -unless admin_category.children.empty?
+    %ul.nav.nav-list.tree
+      =render :partial => "dashboard/admin_category", :collection => admin_category.children
