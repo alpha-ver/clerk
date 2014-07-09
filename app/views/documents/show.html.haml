@@ -20,6 +20,5 @@
     %h2= t 'categories'
     %ul.nav.nav-list
       =render :partial => "dashboard/category", :collection => @category.children
-  .col-md-8 
+  .col-md-8
     %iframe#google-iframe{frameborder: "0", src: "http://docs.google.com/gview?url=http://#{request.host}/preview/#{@document.path}.pdf&embedded=true"}
-

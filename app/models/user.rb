@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :templates,   dependent: :destroy
   has_many :permissions, dependent: :destroy
+  has_many :faqs,        dependent: :destroy
 
 end
