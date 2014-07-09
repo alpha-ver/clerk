@@ -23,15 +23,22 @@
   .col-md-8
     %table.table.table-hover
       %tr
-        %tn=t('name')
-        %th
-        %th
-        %th
+        %th=t('name')
+        %th{:width=>'20px'}
+        %th{:width=>'20px'}
+        %th{:width=>'20px'}
 
       - @documents.each do |document|
         %tr
           %td= document.name
-          
-          %td= link_to 'Show', document
-          %td= link_to 'Edit', edit_document_path(document)
-          %td= link_to 'Destroy', document, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td
+            = link_to "http://#{request.host}/preview/#{document.path}.pdf", :class => "openBtn", :alt=> t('view', :default=>"View") do
+              %span.glyphicon.glyphicon-list-alt{:id=>"view_#{document.id}"}
+          %td
+            = link_to edit_document_path(document), :alt=>t('edit') do
+              %span.glyphicon.glyphicon-pencil
+          %td
+            = link_to document, :method => :delete, :data => { :confirm => 'Are you sure?' }, :alt=>t('destroy') do
+              %span.glyphicon.glyphicon-trash
+
+=render :partial => "dashboard/modal"

@@ -1,0 +1,15 @@
+#myModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", type: "button"}
+          %span{"aria-hidden" => "true"} &#215;
+          %span.sr-only=t('close')
+        %h4.modal-title=t('document_view')
+      .modal-body
+        %iframe#gpdf{frameborder: "0", src: "", width: "100%"}
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", type: "button"}=t('close')
+        %a.btn.btn-primary#dpdf{:href=>"#"}
+          %span.glyphicon.glyphicon-cloud-download
+          =t('download')

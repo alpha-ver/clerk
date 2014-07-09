@@ -97,6 +97,16 @@
               %li= link_to t('admin'),     admin_path
               %li= link_to t('edit_user'), users_path
 
+          -if user_signed_in?
+            %form.navbar-form.navbar-right
+              .form-group
+                -if current_user.templates.count == 0
+                  = link_to dashboard_path, :class=>"btn btn-primary" do
+                    =t('create_org')  
+                -else
+                  = select_tag(:select_teplate, options_for_select(current_user.templates.map{|i| [i.name, i.id]}, selected: :select_teplate), {:class=>"form-control"})
+
+
           %ul.nav.navbar-nav.navbar-right
             -if !user_signed_in?
               %li.dropdown
